@@ -1,79 +1,69 @@
 <template>
-  <v-simple-table
-      fixed-header
-  >
-    <template v-slot:default>
-      <thead>
-      <tr>
-        <th class="text-left">
-          Name
-        </th>
-        <th class="text-left">
-          Calories
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr
-          v-for="item in desserts"
-          :key="item.name"
-      >
-        <td>{{ item.name }}</td>
-        <td>{{ item.calories }}</td>
-      </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+  <v-spacer class="max-width">
+    <v-simple-table
+        fixed-header
+    >
+      <template v-slot:default>
+        <thead>
+        <tr>
+          <th class="text-left">
+            Название
+          </th>
+          <th class="text-left">
+            Автор
+          </th>
+          <th class="text-left">
+            Версия
+          </th>
+          <th class="text-left">
+            Описание
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <package-column
+            v-if="packagesList.length"
+            v-for="item in packagesList"
+            :package="item.package"
+            :key="item.package.name"
+        />
+        <tr v-else>
+          <td>
+            Поиск не дал результатов
+          </td>
+        </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
+    <div class="text-center" v-if="packagesList.length">
+      <v-container class="max-width">
+        <v-pagination
+            v-model="page"
+            :length="Math.floor(totalPackages/10)"
+        ></v-pagination>
+      </v-container>
+    </div>
+  </v-spacer>
 </template>
 
 <script>
+import PackageColumn from "@/components/table/PackageColumn";
+import {mapGetters} from "vuex";
+
 export default {
   name: "TableWrap",
+  components: {PackageColumn},
   data() {
     return {
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-        },
-
-      ],
+      page: 1
+    }
+  },
+  computed: {
+    ...mapGetters(['packagesList', 'totalPackages', 'isSearching'])
+  },
+  watch: {
+    page(newValue, oldValue) {
+      this.$store.dispatch('getPackagesFromSearch', {offset: newValue * 10 - 10});
     }
   },
 }

@@ -1,36 +1,27 @@
 <template>
   <v-footer
-      dark
+      color="primary lighten-1"
       padless
   >
-    <v-card
-        flat
-        tile
-        class="indigo lighten-1 white--text text-center"
+    <v-row
+        justify="center"
+        no-gutters
     >
-      <v-card-text>
-        <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-        >
-          <v-icon size="24px">
-            {{ icon }}
-          </v-icon>
-        </v-btn>
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
+      <v-btn
+          color="white"
+          text
+          rounded
+          class="my-2"
+      >
+        <a href="https://github.com/tabatintores" target="_blank" class="app-footer__link">GitHub</a>
+      </v-btn>
+      <v-col
+          class="primary py-4 text-center white--text"
+          cols="12"
+      >
+        Made by Kanat Kolbekov
+      </v-col>
+    </v-row>
   </v-footer>
 </template>
 
@@ -40,6 +31,11 @@ name: "AppFooter"
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .app-footer {
+    &__link {
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
 </style>

@@ -18,12 +18,12 @@ export default {
   },
   methods: {
     openPackageModal() {
-      console.log(this.package)
       const PackageModal = () => import(`@/components/table/PackageModal`);
       this.$modal.show(PackageModal, {
         package: this.package
       }, {
         name: 'PackageModal',
+        adaptive: true,
         maxWidth: 500,
         height: 'auto'
       })

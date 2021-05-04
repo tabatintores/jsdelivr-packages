@@ -1,19 +1,6 @@
 # jsdelivr-packages
 
-## Project setup
+## Тестовое задание
 ```
-npm install
+https://docs.google.com/document/d/1rZPofu1ykHDANQUzal4w8Z6wJftZKrl4C2p2HM17rYU/edit
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
